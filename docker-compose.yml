@@ -2,20 +2,22 @@ version: '3.8'
 
 services:
   frontend:
+    restart: always
     image: react-frontend:v1
     ports:
       - "3000:3000"
    
 
   backend:
+    restart: always
     image: spring-backend:v1
     ports:
       - "8081:8080"
     depends_on:
       - database
-   
 
   database:
+    restart: always
     image: postgres:latest
     ports:
       - "5432:5432"
@@ -23,5 +25,7 @@ services:
       POSTGRES_DB: demodb
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: Branajay
+    volumes:
+      -postgres_data:/var/lib/postgresql/data
 
 
