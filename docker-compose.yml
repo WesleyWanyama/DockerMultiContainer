@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: react-frontend:v1
+    ports:
+      - "3000:3000"
+   
+
+  backend:
+    image: spring-backend:v1
+    ports:
+      - "8081:8080"
+    depends_on:
+      - database
+   
+
+  database:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: demodb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Branajay
+
+
