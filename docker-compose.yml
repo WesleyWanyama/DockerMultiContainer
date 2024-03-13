@@ -6,7 +6,8 @@ services:
     image: react-frontend:v2
     ports:
       - "3000:3000"
-   
+    networks:
+      - frontend-backend
 
   backend:
     restart: always
@@ -15,6 +16,8 @@ services:
       - "8080:8080"
     depends_on:
       - database
+    networks:
+      - frontend-backend
 
   database:
     restart: always
@@ -26,6 +29,13 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: Branajay
     volumes:
-      -postgres_data:/var/lib/postgresql/data
+      - ./postgres_data:/var/lib/postgresql/data
+    networks:
+      - frontend-backend
 
+# volumes:
+#   postgres_data:
 
+networks:
+  frontend-backend:
+    driver: bridge
