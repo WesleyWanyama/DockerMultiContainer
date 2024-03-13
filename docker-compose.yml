@@ -3,16 +3,16 @@ version: '3.8'
 services:
   frontend:
     restart: always
-    image: react-frontend:v1
+    image: react-frontend:v2
     ports:
       - "3000:3000"
    
 
   backend:
     restart: always
-    image: spring-backend:v1
+    image: spring-backend:v2
     ports:
-      - "8081:8080"
+      - "8080:8080"
     depends_on:
       - database
 
