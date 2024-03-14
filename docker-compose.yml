@@ -35,9 +35,6 @@ services:
     networks:
       - frontend-backend
 
-# volumes:
-#   postgres_data:
-
 networks:
   frontend-backend:
     driver: bridge
