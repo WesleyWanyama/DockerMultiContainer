@@ -3,7 +3,7 @@ version: '3.8'
 services:
   frontend:
     restart: always
-    image: react-frontend:v4
+    image: react-frontend:v6
     container_name: frontend
     ports:
       - "3000:3000"
@@ -12,14 +12,12 @@ services:
 
   backend:
     restart: always
-    image: spring-backend:v4
+    image: spring-backend:v6
     container_name: backend
     ports:
       - "8080:8080"
     depends_on:
       - database
-    environment:
-      - DB_HOST=database
     networks:
       - frontend-backend
 
@@ -40,4 +38,7 @@ services:
 
 networks:
   frontend-backend:
+    name: frontend-backend
     driver: bridge
+    
+
