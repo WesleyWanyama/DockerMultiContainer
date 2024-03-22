@@ -1,6 +1,16 @@
 version: '3.8'
 
 services:
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    volumes:
+    - ./nginx:/etc/nginx/conf.d
+    ports:
+    - "443:443"
+    networks:
+      - frontend-backend
+
   frontend:
     restart: always
     image: react-frontend:v6
