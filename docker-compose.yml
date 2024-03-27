@@ -6,7 +6,7 @@ services:
     image: react-frontend:v10
     container_name: frontend
     ports:
-      - "3000:80"
+      - "3000:443"
     # networks:
     #   - frontend-backend
 
@@ -54,9 +54,8 @@ services:
     container_name: haproxy
     volumes:
       - ./haproxy:/usr/local/etc/haproxy
-      - ./haproxy/haproxy.pem:/usr/local/etc/haproxy/haproxy.pem
     ports:
-      - "82:82"
+      - "443:443"
     # networks:
     #   - frontend-backend
 
