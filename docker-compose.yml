@@ -6,13 +6,13 @@ services:
     image: react-frontend:v10
     container_name: frontend
     ports:
-      - "3000:80"
+      - "3000:3000"
     # networks:
     #   - frontend-backend
 
   backend:
     restart: always
-    image: spring-backend:v7
+    image: spring-backend:v8
     container_name: backend
     ports:
       - "8080:8080"
@@ -36,26 +36,27 @@ services:
     # networks:
     #   - frontend-backend
 
-  nginx:
-    image: nginx:alpine
-    container_name: nginx
-    volumes:
-    - ./nginx:/etc/nginx/conf.d
-    ports:
-    - "443:443"
-    depends_on:
-      - frontend
-      - backend
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: nginx
+  #   volumes:
+  #   - ./nginx:/etc/nginx/conf.d
+  #   ports:
+  #   - "443:443"
+  #   depends_on:
+  #     - frontend
+  #     - backend
     # networks:
     #   - frontend-backend
 
-  # haproxy:
-  #   image: haproxy:latest
-  #   container_name: haproxy
-  #   volumes:
-  #     - ./haproxy:/etc/haproxy/haproxy.cfg
-  #   ports:
-  #     - "443:443"
+  haproxy:
+    image: haproxy:latest
+    container_name: haproxy
+    volumes:
+      - ./haproxy:/usr/local/etc/haproxy
+      - ./haproxy/haproxy.pem:/usr/local/etc/haproxy/haproxy.pem
+    ports:
+      - "443:443"
     # networks:
     #   - frontend-backend
 
