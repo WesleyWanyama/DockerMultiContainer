@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: backend
-        image: wesley3015/spring-backend:v8
+        image: spring-backend:v8
         ports:
         - containerPort: 8080
